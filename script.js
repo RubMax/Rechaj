@@ -272,6 +272,7 @@ function handleScroll() {
     
     
 function displayProduits(data) {
+
   const container = document.getElementById('produits');
   container.innerHTML = "";
   const sections = [...new Set(data.map(item => item.section))];
@@ -299,6 +300,19 @@ function displayProduits(data) {
 const hasImage = produit.image && produit.image.trim() !== '';
 div.className = "article produit-ligne" + (hasImage ? "" : " no-image");
 
+div.onclick = () => {
+  showPopup(
+    escapeHtml(produit.image),
+    escapeHtml(produit.nom),
+    descriptionParam,
+    escapeHtml(produit.prix),
+    escapeHtml(produit.tailles),
+    escapeHtml(produit.code),
+    escapeHtml(produit.section)
+  );
+};
+
+
         const descriptionHtml = produit.description.replace(/\n/g, '<br>');
         const descriptionParam = encodeURIComponent(produit.description);
 
@@ -323,21 +337,24 @@ div.className = "article produit-ligne" + (hasImage ? "" : " no-image");
             
 
             <div class="details">
+
   ${produit.prix ? (() => {
   try {
     if (produit.prix.includes('-')) {
       const [oldPrice, newPrice] = produit.prix.split('-').map(p => escapeHtml(p.trim()));
       return `
-        <div class="price-container">
+        <div class="price-container" >
           <span class="old-price">R$ ${oldPrice}</span>
           <span class="new-price">R$ ${newPrice}</span>
         </div>
       `;
+
     }
     return `<p>R$ <strong>${escapeHtml(produit.prix)}</strong></p>`;
   } catch (e) {
     return `<p>R$ <strong>${escapeHtml(produit.prix)}</strong></p>`;
   }
+
 })() : ''}
 
 ${(() => {
@@ -357,11 +374,11 @@ ${(() => {
     .filter(t => t !== '');
 
   const taillesEncadrees = taillesArray.map(taille => 
-  `<span class="taille-encadree">🔹 ${escapeHtml(taille)}</span>`
+  `<span class="taille-encadree" >🔹 ${escapeHtml(taille)}</span>`
 ).join(' ');
 
   return `
-    ${note ? `<p class="note-text"><strong>${escapeHtml(note)}</strong></p>` : ''}
+    ${note ? `<p class="note-text" ><strong>${escapeHtml(note)}</strong></p>` : ''}
     ${taillesArray.length > 0 ? `
       <div class="tailles-container">
         ${taillesEncadrees}
@@ -369,9 +386,6 @@ ${(() => {
     ` : ''}
   `;
 })()}
-<br>
-            <button class="open-button" onclick="handleProductClick('${escapeHtml(produit.image)}', '${escapeHtml(produit.nom)}', '${descriptionParam}', '${escapeHtml(produit.prix)}', '${escapeHtml(produit.tailles)}', '${escapeHtml(produit.code)}', '${escapeHtml(produit.section)}')">Solicite/Realise</button>
-          
 
           </div>
         `;
@@ -563,7 +577,9 @@ function handleProductClick(imageUrl, nom, description, prix, tailles, code, sec
   // Mettre à jour le contenu du popup
   document.getElementById("popup-details").innerHTML = `
     <h4>${escapeHtml(nom)}</h4>
-    
+    <div">
+      <strong>Faites votre choix et cliquez sur le bouton WhatsApp.</strong>
+    </div>
     ${prix?.trim() ? (() => {
       // Vérifie si le prix contient un séparateur "-"
       if (prix.includes('-')) {
@@ -595,19 +611,14 @@ function handleProductClick(imageUrl, nom, description, prix, tailles, code, sec
     <div>
       ${sizesHTML}
     </div>
-    
-    
-
-    <div">
-      <strong>Solicite ou realize este serviço no Whatsapp:</strong>
-    </div>
-     <br>
+    <p>👇</p>
     <a href="#" id="whatsappButton" class="whatsapp-btn" onclick="event.preventDefault(); sendWhatsAppMessage();">
       <i class="fab fa-whatsapp"></i> WhatsApp
     </a>
-<br>
+<br><br>
     <div">
-      <strong>Descrição:</strong>
+
+      <strong>DESCRIPTION:</strong>
       <div class="description-text" color: #0081fe;">
         ${decodeURIComponent(description).replace(/\n/g, '<br>')}
       </div>
@@ -786,7 +797,7 @@ function closeRegistrationPopup() {
 }
     
    // Ton numéro WhatsApp (à personnaliser)
-const WHATSAPP_NUMBER = "+5511916204805";
+const WHATSAPP_NUMBER = "5511916204805";
 
 function sendWhatsAppMessage() { 
   const sizesArray = currentProduct.tailles.split(',').map(size => size.trim()).filter(size => size !== '');
