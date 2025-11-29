@@ -50,13 +50,21 @@
 }
     
     /* Barre de navigation défilante */
+    .fixed-nav-titlet{
+      width: 100%;
+      background: #83addc;
+      overflow-x: hidden;
+    } 
+
     .nav-scroll-container {
       width: 100%;
       background: #83addc;
       overflow-x: hidden;
       padding-bottom: 10px;
-      padding-top: 10px;
     }
+
+    
+    
     
     .section-nav {
       display: inline-flex;
@@ -516,7 +524,6 @@
       border-radius: 0.5rem;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 4px;
       font-size: 1.2rem;
       transition: background-color 0.3s;
     }
