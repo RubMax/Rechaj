@@ -14,10 +14,8 @@
       overscroll-behavior: contain;
     }
 
-
-
     body {
-      background: #f9f9f9;
+      background: ;
       position: relative;
       min-height: 100vh;
       overflow-x: hidden;
@@ -37,16 +35,16 @@
     
    .logo-container {
   display: flex;
-  justify-content: center; /* Centre horizontalement */
-  align-items: center;     /* Centre verticalement (optionnel) */
+  justify-content: center;
+  align-items: center;
   padding: 0;
-  width: 100%;            /* Assure que le conteneur prend toute la largeur */
+  width: 100%;
 }
 
 .logo-img {
-  width: 100%;           /* Prend 100% de la largeur du parent (.logo-container) */
-  max-width: 500px;      /* Mais ne dépasse pas 500px */
-  height: auto;          /* Maintient le ratio d'aspect */
+  width: 100%;
+  max-width: 500px;
+  height: auto;
 }
     
     /* Barre de navigation défilante */
@@ -62,9 +60,6 @@
       overflow-x: hidden;
       padding-bottom: 10px;
     }
-
-    
-    
     
     .section-nav {
       display: inline-flex;
@@ -103,15 +98,11 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       color: white;
     }
-.section-container {
-  display: flex;
-    flex-direction: column; /* Assure une pile verticale */
-  width: 100%;
-}
+
     /* Contenu principal */
     .main-content {
       margin-top: 120px;
-      padding: 0 5px;
+      padding: 0 5px !important;
     }
 
     .container {
@@ -152,28 +143,65 @@
       scroll-margin-top: 1px;
     }
     
-    .section-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1px;
-      justify-content: space-between;
-    }
+   /* GRILLE CORRIGÉE - PRODUITS À 100% DE LA COLONNE */
+.section-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0 5px !important;
+}
 
-    .article {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: .6rem;
-      padding: 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.10);
-      width: calc(50% - 0.5rem);
-      box-sizing: border-box;
-      overflow: hidden;
-    }
+.section-container .article {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    padding: 8px !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    border: 1px solid #e6e6e6 !important;
+    margin: 0 !important;
+}
 
-    .article-image {
-      width: 100%;
-      padding: 5px;
-    }
+.section-container .article-image {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-bottom: 2px !important;
+}
+
+.section-container .article-image img {
+    width: 100% !important;
+    height: 160px !important;
+    border-radius: 6px !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+.section-container .article-details {
+    width: 100% !important;
+    display: block !important;
+    text-align: left !important;
+    padding: 0 2px !important;
+    box-sizing: border-box !important;
+}
+
+.section-container .article-details h3 {
+    width: 100% !important;
+    margin: 0 0 5px 0 !important;
+    padding: 0 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.2 !important;
+}
+
+.section-container .price-container,
+.section-container .tailles-container {
+    width: 100% !important;
+    margin: 4px 0 !important;
+}
 
     .article-details {
       background: white;
@@ -192,8 +220,8 @@
     /* Styles pour la galerie d'images */
    .gallery-container {
   width: 100%;
-  max-width: 80%; /* Limite la largeur globale */
-  margin: 0 auto; /* Centre le conteneur */
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .image-gallery {
@@ -208,19 +236,18 @@
   display: flex;
   transition: transform 0.5s ease;
   width: 100%;
-  height: 100%; /* Utilise toute la hauteur */
+  height: 100%;
 }
 
 .gallery-image {
-  width: 100%; /* Force 100% de la largeur disponible */
+  width: 100%;
   height: 100%;
-  object-fit: cover; /* Couvre tout l'espace (recadre si nécessaire) */
-  flex-shrink: 0; /* Empêche la réduction */
+  object-fit: cover;
+  flex-shrink: 0;
 }
 .popup-content {
-  /* ... autres styles ... */
-  overflow-y: auto; /* Défilement pour le contenu */
-  max-height: 90vh; /* Hauteur maximale pour le contenu */
+  overflow-y: auto;
+  max-height: 90vh;
 }
     
     .gallery-nav {
@@ -435,7 +462,7 @@
     }
     .popup-image {
   max-width: 100%;
-  width: 25px; /* taille réduite */
+  width: 25px;
   height: 8px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -458,8 +485,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: white;  /* fond blanc */
-  display: none;  /* caché par défaut */
+  background-color: white;
+  display: none;
   align-items: center;
   justify-content: center;
   z-index: 9999;
@@ -468,18 +495,12 @@
   box-sizing: border-box;
 }
 
-
     .price-highlight {
-      font-size: 1rem;
-      font-weight: bold;
-      color: red;
-      margin: 4px;
-      display: flex;
-      align-items: baseline;
-      gap: 2px;
-    }
-    
-    
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #d32f2f;
+  margin-top: 5px;
+}
 
     .currency-symbol {
       font-size: 1em;
@@ -579,14 +600,43 @@
 
  .produit-ligne {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-direction: column !important;
+  align-items: center;
   width: 100%;
-  margin-bottom: 20px;
-  border-bottom: 4px solid #ccc;
-  padding-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+  background: #fff;
 }
 
+.article-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.article-details {
+  padding: 8px;
+  text-align: left;
+}
+
+.article-details h3 {
+  font-size: 0.95em;
+  color: #333;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
 .produit-ligne .article-image {
   flex: 0 0 40%;
   max-width: 40%;
@@ -610,7 +660,6 @@
   padding-right :30px;
   box-sizing: border-box;
 }
-
 
       /* Styles pour le popup de pub */
     .pub-popup {
@@ -785,7 +834,7 @@
         .old-price {
             position: relative;
             display: inline-block;
-            padding-right: 40px; /* Espace réservé pour le badge */
+            padding-right: 40px;
             color: #ff0000;
             text-decoration: line-through;
             font-size: 1.4em;
@@ -903,8 +952,6 @@
   box-shadow: 0 0 1px rgba(255, 0, 0, 0.5);
 }
 
-
-
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -965,7 +1012,6 @@
   flex: 1 1 55%;
 }
 
-
 .article.produit-ligne {
   display: flex;
   flex-direction: row;
@@ -988,6 +1034,7 @@
 .article-details {
   flex: 1;
 }
+
 /* Styles pour le popup d'enregistrement */
 .register-popup-overlay {
   position: fixed;
@@ -1085,4 +1132,15 @@ body.registration-pending #app {
 
 body.registration-pending #page-loader {
   display: none;
+}
+
+/* SUPPRESSION DES ANCIENS STYLES CONFLICTUELS */
+/* Les styles suivants sont remplacés par la nouvelle grille en haut */
+
+#produits {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
 }

@@ -51,6 +51,9 @@
 }
 
 
+
+
+
     function setupHorizontalDragScroll() {
       const container = document.getElementById('nav-container');
       const content = document.getElementById('section-nav');
@@ -103,6 +106,7 @@
       });
     }
     
+
 function createSectionButtons(sections) {
   const navContainer = document.getElementById('section-nav');
   navContainer.innerHTML = '';
@@ -374,7 +378,7 @@ ${(() => {
     .filter(t => t !== '');
 
   const taillesEncadrees = taillesArray.map(taille => 
-  `<span class="taille-encadree" >🔹 ${escapeHtml(taille)}</span>`
+  `<span class="taille" >🔹 ${escapeHtml(taille)}</span>`
 ).join(' ');
 
   return `
@@ -797,7 +801,7 @@ function closeRegistrationPopup() {
 }
     
    // Ton numéro WhatsApp (à personnaliser)
-const WHATSAPP_NUMBER = "5511916204805";
+const WHATSAPP_NUMBER = "5511975050741";
 
 function sendWhatsAppMessage() { 
   const sizesArray = currentProduct.tailles.split(',').map(size => size.trim()).filter(size => size !== '');
